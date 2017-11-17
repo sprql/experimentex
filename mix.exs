@@ -4,7 +4,8 @@ defmodule Experimentex.Mixfile do
   def project do
     [app: :experimentex,
      version: "0.1.0",
-     elixir: "~> 1.4",
+     elixir: "~> 1.5",
+     dialyzer: [plt_add_deps: :transitive],
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
@@ -28,6 +29,9 @@ defmodule Experimentex.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:benchee, "~> 0.8", only: :dev}]
+    [
+      {:benchee, "~> 0.8", only: :dev},
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
+    ]
   end
 end
